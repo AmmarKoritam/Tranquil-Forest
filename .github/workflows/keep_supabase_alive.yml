@@ -1,0 +1,16 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    # سيقوم هذا الكود بالعمل مرة واحدة يومياً (الساعة 12 ظهراً بتوقيت جرينتش)
+    - cron: '0 12 * * *'
+  workflow_dispatch: # يتيح لك تشغيل الكود يدوياً للتجربة
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Ping to Supabase API
+        run: |
+          curl -I "https://wsnykrumcxyxpduudpjm.supabase.co/rest/v1/" \
+          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}"
